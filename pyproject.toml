@@ -1,0 +1,25 @@
+[project]
+name = "reachy-consent"
+version = "0.1.0"
+description = "Surgical informed consent assistant for Reachy Mini"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.137.1",
+    "pyyaml>=6.0.3",
+    "reachy-mini[examples,mujoco]>=1.8.2",
+    "uvicorn>=0.49.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["engine*", "api*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+]

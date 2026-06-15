@@ -1,0 +1,89 @@
+procedure:
+  id: lap_chole_v1
+  title: Laparoscopic Cholecystectomy
+  reading_level: grade_8
+  disclaimer: |
+    I am a consent assistant, not your surgeon. I will help explain your procedure.
+    Your surgeon and care team will still talk with you and answer personal questions.
+    Nothing we discuss today replaces signing the official consent form with a clinician.
+
+sections:
+  - id: greeting
+    type: script
+    script: |
+      Hello. I'm here to help you understand your upcoming surgery called
+      laparoscopic cholecystectomy — removal of the gallbladder using small incisions
+      and a camera. We will go through this step by step. You can ask questions at any time.
+    confirm_prompt: null
+
+  - id: overview
+    type: script
+    script: |
+      During the procedure, you will receive general anesthesia so you are asleep.
+      The surgeon makes a few small cuts in your abdomen. A camera and instruments
+      go through these cuts to remove the gallbladder. The surgery usually takes
+      about one to two hours.
+    confirm_prompt: "Do you understand what will happen during the surgery? Please say yes, or ask a question."
+
+  - id: indication
+    type: script
+    script: |
+      This surgery is recommended when the gallbladder causes symptoms such as pain,
+      inflammation, or gallstones that affect your daily life. Your surgeon believes
+      removing the gallbladder is the best option for your situation.
+    confirm_prompt: "Do you understand why this surgery is being recommended?"
+
+  - id: risks
+    type: script
+    script: |
+      All surgery has risks. Common risks include bleeding, infection, pain, and
+      reactions to anesthesia. More serious but less common risks include injury to
+      nearby structures such as the bile duct, bowel, or blood vessels. Sometimes the
+      surgeon may need to switch to an open surgery with a larger incision. There is
+      also a small risk of bile leak, hernia at an incision site, or retained stones.
+    must_cover:
+      - bleeding
+      - infection
+      - bile_duct_injury
+      - conversion_to_open
+    confirm_prompt: "Do you understand the risks of this procedure?"
+
+  - id: benefits
+    type: script
+    script: |
+      The expected benefit is relief from gallbladder-related symptoms and prevention
+      of future gallbladder attacks. Most people recover well and return to normal
+      activities within a few weeks.
+    confirm_prompt: "Do you understand the expected benefits?"
+
+  - id: alternatives
+    type: script
+    script: |
+      Alternatives include managing symptoms with diet and medication, or waiting to see
+      if symptoms improve. You may also choose not to have surgery. Not having surgery
+      may mean symptoms continue or worsen.
+    confirm_prompt: "Do you understand your alternatives, including choosing not to have surgery?"
+
+  - id: recovery
+    type: script
+    script: |
+      After surgery you may go home the same day or stay overnight. You should plan for
+      rest, limited lifting, and follow-up with your care team. Call your doctor if you
+      develop severe pain, fever, yellowing of the skin, or worsening nausea and vomiting.
+    confirm_prompt: "Do you understand what to expect during recovery?"
+
+  - id: qa
+    type: qa
+    script: |
+      We have covered the main parts of informed consent. What questions do you still have
+      about the procedure, risks, benefits, or recovery?
+    confirm_prompt: "Do you have any other questions before we finish?"
+
+  - id: summary
+    type: script
+    script: |
+      Thank you for going through this with me. To summarize: you are scheduled for
+      laparoscopic cholecystectomy. We discussed what will happen, why it is recommended,
+      the risks and benefits, alternatives, and recovery. A nurse or surgeon will meet
+      with you next to complete the official consent form and signature.
+    confirm_prompt: "Are you ready to meet with your care team to sign the consent form?"
