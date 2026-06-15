@@ -5,7 +5,7 @@ This repo keeps **all phases in one tree**. Git history tracks how files change 
 | Phase | Status | Manifest |
 |-------|--------|----------|
 | [Phase 1 — Sim + state machine](phase-1.md) | In progress | CLI, dashboard, consent engine, robot app scaffold |
-| [Phase 2 — Voice](phase-2.md) | Planned | OpenAI Realtime app, audio/head motion |
+| [Phase 2 — Voice](phase-2.md) | In progress | TTS/STT runner, bridge, motion cues |
 | [Phase 3 — RAG Q&A](phase-3.md) | Planned | Document retrieval, guardrailed answers |
 
 ## How we preserve history

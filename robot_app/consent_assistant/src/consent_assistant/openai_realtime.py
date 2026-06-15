@@ -115,6 +115,7 @@ class OpenaiRealtimeHandler(AsyncStreamHandler):
         self._response_done_event: asyncio.Event = asyncio.Event()
         self._response_done_event.set()
         self._last_response_rejected: bool = False
+        self._speaking_cue_active: bool = False
 
     def copy(self) -> "OpenaiRealtimeHandler":
         """Create a copy of the handler."""
@@ -526,11 +527,25 @@ class OpenaiRealtimeHandler(AsyncStreamHandler):
 
                     if event.type == "response.created":
                         self._response_done_event.clear()
+                        self._speaking_cue_active = False
+                        try:
+                            from consent_assistant.consent_motion import set_thinking
+
+                            set_thinking(self.deps.reachy_mini)
+                        except Exception:
+                            pass
                         logger.debug("Response created (active)")
 
                     if event.type == "response.done":
                         # Doesn't mean the audio is done playing
                         self._response_done_event.set()
+                        self._speaking_cue_active = False
+                        try:
+                            from consent_assistant.consent_motion import set_ready
+
+                            set_ready(self.deps.reachy_mini)
+                        except Exception:
+                            pass
                         logger.debug("Response done")
 
                         response = getattr(event, "response", None)
@@ -584,6 +599,14 @@ class OpenaiRealtimeHandler(AsyncStreamHandler):
 
                     # Handle audio delta
                     if event.type in ("response.audio.delta", "response.output_audio.delta"):
+                        if not self._speaking_cue_active:
+                            self._speaking_cue_active = True
+                            try:
+                                from consent_assistant.consent_motion import set_speaking
+
+                                set_speaking(self.deps.reachy_mini)
+                            except Exception:
+                                pass
                         if self.deps.head_wobbler is not None:
                             self.deps.head_wobbler.feed(event.delta)
                         self.last_activity_time = asyncio.get_event_loop().time()

@@ -40,10 +40,14 @@ Each phase’s files are documented in [`docs/phases/`](docs/phases/README.md). 
 - [x] Verify MuJoCo daemon connection
 - [ ] Wire motion cues (nod on confirm)
 
-### Phase 2 — Voice
-- [ ] Adapt voice pipeline from `_reference/Robotic-medical-AI-assistant`
-- [ ] Customize `instructions.txt` for consent-only behavior
-- [ ] Listening / speaking / thinking head states
+### Phase 2 — Voice (current)
+- [x] `engine/voice_bridge.py` — state machine ↔ voice sessions
+- [x] `engine/voice_cues.py` — listening / thinking / speaking / nod
+- [x] `scripts/run_consent_voice.py` — OpenAI TTS + Whisper + Reachy audio
+- [x] Consent-specific `instructions.txt` and consent tools for robot app
+- [x] Head motion hooks in OpenAI Realtime handler
+- [ ] End-to-end sim test with live audio
+- [ ] Adapt local STT/TTS from reference repo (optional)
 
 ### Phase 3 — RAG Q&A
 - [ ] Embed consent document chunks

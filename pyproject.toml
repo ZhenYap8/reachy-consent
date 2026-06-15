@@ -9,6 +9,8 @@ dependencies = [
     "pyyaml>=6.0.3",
     "reachy-mini[examples,mujoco]>=1.8.2",
     "uvicorn>=0.49.0",
+    "openai>=2.0",
+    "python-dotenv>=1.0",
 ]
 
 [tool.pytest.ini_options]

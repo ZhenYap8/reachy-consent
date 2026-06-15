@@ -47,25 +47,28 @@ uv run uvicorn api.server:app --reload --port 8091
 
 Open http://127.0.0.1:8091
 
-## MuJoCo simulation
-
-Terminal 1:
+## Phase 2 — Voice (current)
 
 ```bash
-# macOS may require:
-mjpython -m reachy_mini.daemon.app.main --sim
-# or:
-uv run reachy-mini-daemon --sim
+cd ~/Documents/Github/reachy/reachy-consent
+cp .env.example .env   # add OPENAI_API_KEY
+uv sync
+
+# Text-only smoke test (no robot)
+uv run python scripts/run_consent_voice.py --no-robot
+
+# With MuJoCo sim — terminal 1:
+uv run mjpython -m reachy_mini.daemon.app.main --sim
+
+# Terminal 2 — spoken consent walkthrough:
+uv run python scripts/run_consent_voice.py
+
+# Or OpenAI Realtime robot app (Gradio UI in sim):
+cd robot_app/consent_assistant
+export REACHY_MINI_CUSTOM_PROFILE=_consent_assistant_locked_profile
+export CONSENT_PACK_PATH=../../consent_packs/lap_chole.yaml
+uv run consent-assistant --gradio
 ```
-
-Terminal 2 — smoke test:
-
-```bash
-uv run python -c "from reachy_mini import ReachyMini; 
-with ReachyMini(media_backend='no_media') as m: print('Connected')"
-```
-
-Use `media_backend='no_media'` in sim when you don't need camera/audio — it connects faster and avoids GStreamer warnings on macOS.
 
 ## Robot app (Phase 2)
 
@@ -89,8 +92,10 @@ All phases are tracked in one repo. See [`docs/phases/`](docs/phases/README.md) 
 - [x] Lap chole consent pack
 - [x] State machine + CLI + dashboard
 - [x] MuJoCo daemon connection verified
-- [ ] MuJoCo motion cues (nod on confirm)
-- [ ] Voice pipeline integration
+- [ ] MuJoCo motion cues (nod on confirm) — partial via voice runner
+- [x] Voice pipeline (`scripts/run_consent_voice.py`)
+- [x] Consent-specific robot app prompts + tools
+- [ ] Full bridge testing on sim hardware audio
 - [ ] RAG Q&A from consent document
 
 See `plan.md` for the full roadmap.
