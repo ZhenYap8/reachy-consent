@@ -79,11 +79,16 @@ Customize `profiles/_consent_assistant_locked_profile/instructions.txt` for cons
 | `../reachy_mini/` | Official SDK, examples, MuJoCo |
 | `../_reference/Robotic-medical-AI-assistant/` | Local voice pipeline reference |
 
+## Phase history
+
+All phases are tracked in one repo. See [`docs/phases/`](docs/phases/README.md) for which files belong to Phase 1, 2, and 3.
+
 ## Status
 
 - [x] Project scaffold + dependencies
 - [x] Lap chole consent pack
 - [x] State machine + CLI + dashboard
+- [x] MuJoCo daemon connection verified
 - [ ] MuJoCo motion cues (nod on confirm)
 - [ ] Voice pipeline integration
 - [ ] RAG Q&A from consent document

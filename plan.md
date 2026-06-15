@@ -25,6 +25,10 @@ consent_packs/*.yaml  →  engine/state_machine.py  →  FastAPI dashboard
                     reachy-mini-daemon (--sim or hardware)
 ```
 
+## Phase file history
+
+Each phase’s files are documented in [`docs/phases/`](docs/phases/README.md). All phases live in **one repo** — git tracks changes; manifests record which paths belong to which phase.
+
 ## Phases
 
 ### Phase 1 — Sim + state machine (current)
@@ -33,7 +37,7 @@ consent_packs/*.yaml  →  engine/state_machine.py  →  FastAPI dashboard
 - [x] Scaffold conversation robot app
 - [x] Consent YAML pack + state machine
 - [x] CLI demo + session export
-- [ ] Verify MuJoCo daemon connection
+- [x] Verify MuJoCo daemon connection
 - [ ] Wire motion cues (nod on confirm)
 
 ### Phase 2 — Voice
